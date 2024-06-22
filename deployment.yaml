@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-first-deployment  # Replace <deployment-name> with your desired deployment name
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: my-app  # Match this with the labels in template.metadata.labels
+  template:
+    metadata:
+      labels:
+        app: my-app  # Replace <app-name> with your desired app name
+    spec:
+      containers:
+      - name: my-container  # Replace <container-name> with your desired container name
+        image: raahulsharma96/flask-hello-world:latest  # Replace <image-name>/<tag-name> with your image details
+        resources:
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 5000
